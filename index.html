@@ -136,17 +136,23 @@
     .hero-inner { position: relative; z-index: 2; max-width: 1200px; }
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
+      font-weight: 400;
       font-size: clamp(3.4rem, 8.5vw, 7.6rem);
       line-height: 1.02;
       letter-spacing: -0.01em;
       margin: 2.2rem 0 2.6rem;
     }
     .hero h1 em { font-style: italic; color: var(--steel); }
+    .hero-tag {
+      font-style: italic;
+      font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      color: var(--steel);
+      margin: -1rem 0 2rem;
+    }
     .hero .lede {
       max-width: 560px;
-      color: var(--muted);
-      font-size: 1.05rem;
+      color: #B7C2D8;
+      font-size: 1.1rem;
       font-weight: 300;
       margin-bottom: 3.2rem;
     }
@@ -335,8 +341,9 @@
   <header class="hero">
     <div class="hero-inner">
       <p class="overline">Aphani Solutions &nbsp;·&nbsp; Where Calls Convert</p>
-      <h1>Elite sales,<br><em>exceptionally</em> executed.</h1>
-      <p class="lede">The dedicated call centre and sales team for boutique fitness franchises. Every lead called. Every trial closed. Every night, you see the numbers.</p>
+      <h1>Elite sales.<br><em>Exceptional</em> results.</h1>
+      <p class="hero-tag serif">Where calls convert.</p>
+      <p class="lede">The dedicated sales team for boutique fitness franchises. Every lead called. Every trial closed. Every night, you see the numbers.</p>
       <div class="hero-cta">
         <a href="#contact" class="btn solid">Book a Discovery Call</a>
         <a href="#numbers" class="btn">Explore the Numbers</a>
@@ -350,6 +357,7 @@
   </header>
 
   <div class="clients" aria-label="Fitness brands Aphani Solutions works with">
+    <p class="overline" style="text-align:center; margin:0 0 1.6rem;">Trusted by leading fitness franchises</p>
     <div class="marquee-track">
       <div class="marquee-set">
         <img src="logos/f45.svg" alt="F45 Training">
@@ -387,7 +395,7 @@
           <div class="cap">ROI in ninety days</div>
         </div>
         <div class="num-cell reveal">
-          <div class="figure"><span data-count="16">0</span></div>
+          <div class="figure"><span data-count="17">0</span></div>
           <div class="cap">Locations under management</div>
         </div>
       </div>
@@ -430,17 +438,17 @@
         <div class="res-cell reveal">
           <div class="figure">$17,006</div>
           <div class="what">Revenue in month one</div>
-          <div class="where">FXB · Eden Prairie</div>
+          <div class="where">FXB franchise location</div>
         </div>
         <div class="res-cell reveal">
           <div class="figure">5.49×</div>
           <div class="what">Return on investment, 90 days</div>
-          <div class="where">FXB · Grimes</div>
+          <div class="where">FXB franchise location</div>
         </div>
         <div class="res-cell reveal">
           <div class="figure">87.5%</div>
           <div class="what">Trial close rate, best in network</div>
-          <div class="where">FXB · Waukee</div>
+          <div class="where">FXB franchise location</div>
         </div>
       </div>
     </div>
@@ -448,7 +456,7 @@
 
   <section class="statement">
     <blockquote class="reveal">&ldquo;Stop leaving memberships on the table. We handle sales&nbsp;— you run your studio.&rdquo;</blockquote>
-    <p class="sub reveal">A partnership, not a vendor. Sixteen locations across four states already trust us with their front line.</p>
+    <p class="sub reveal">A partnership, not a vendor. Seventeen locations across four states already trust us with their front line.</p>
     <a href="#contact" class="btn reveal">Apply for Partnership</a>
   </section>
 
@@ -494,7 +502,7 @@
 
   <footer>
     <span class="wordmark">APHANI</span>
-    <span>Conversion-Focused · Client-Centered · Exceptionally Executed</span>
+    <span>Elite Sales · Exceptional Results · Where Calls Convert</span>
     <span>&copy; 2026 Aphani Solutions LLC</span>
   </footer>
 
