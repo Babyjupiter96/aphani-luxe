@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aphani Solutions — Elite Sales, Exceptionally Executed</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap');
+
+    :root {
+      --bg: #030711;
+      --bg2: #050B1A;
+      --ink: #EDEFF4;
+      --muted: #8C99B0;
+      --nav: #C2CCDE;
+      --steel: #8FB3D4;
+      --accent: #2E5F8A;
+      --hairline: rgba(200,214,235,0.14);
+      --hairline-strong: rgba(200,214,235,0.28);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Cinzel', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.9;
+      letter-spacing: 0.04em;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: var(--accent); color: white; }
+
+    .wordmark {
+      font-family: 'Cinzel', Georgia, serif;
+      letter-spacing: 0.45em;
+      font-weight: 400;
+      text-indent: 0.45em;
+    }
+
+    .overline {
+      font-size: 11px;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--steel);
+      font-weight: 400;
+    }
+    .sec-label {
+      display: flex;
+      align-items: baseline;
+      gap: 1.4rem;
+      margin-bottom: 4.5rem;
+    }
+    .sec-label .num {
+      font-size: 1rem;
+      color: var(--muted);
+    }
+    .sec-label .rule { flex: 1; height: 1px; background: var(--hairline); }
+
+    /* ---------- nav ---------- */
+    nav.top {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2.2rem 5vw;
+    }
+    .brand { font-size: 1.05rem; color: var(--ink); text-decoration: none; }
+    .brand small {
+      display: block;
+      font-size: 8.5px;
+      letter-spacing: 0.52em;
+      color: var(--muted);
+      margin-top: 0.3rem;
+      text-indent: 0.52em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 2.8rem; }
+    .nav-links a:not(.btn) {
+      color: var(--nav);
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 0.4rem;
+      transition: color 0.4s;
+    }
+    .nav-links a:not(.btn)::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 1px;
+      background: var(--steel);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(.22,.61,.21,1);
+    }
+    .nav-links a:not(.btn):hover { color: var(--ink); }
+    .nav-links a:not(.btn):hover::after { transform: scaleX(1); }
+    .btn {
+      display: inline-block;
+      border: 1px solid var(--hairline-strong);
+      color: var(--ink);
+      text-decoration: none;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 0.95rem 2.4rem;
+      transition: background 0.5s, color 0.5s, border-color 0.5s;
+    }
+    .btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .btn.solid { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .btn.solid:hover { background: transparent; color: var(--ink); border-color: var(--hairline-strong); }
+
+    /* ---------- hero ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 9rem 5vw 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 90% 60% at 70% -10%, rgba(46,95,138,0.18), transparent 60%),
+        radial-gradient(circle, rgba(237,239,244,0.035) 1px, transparent 1px);
+      background-size: auto, 72px 72px;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: -60%;
+      background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(143,179,212,0.05) 40deg, transparent 90deg);
+      animation: sheen 26s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes sheen { to { transform: rotate(360deg); } }
+    .hero-inner { position: relative; z-index: 2; max-width: 1240px; }
+    .hero h1 {
+      font-weight: 400;
+      font-size: clamp(2.6rem, 6.2vw, 5.6rem);
+      line-height: 1.14;
+      letter-spacing: 0.02em;
+      margin: 2.2rem 0 2.6rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--steel); }
+    .hero-tag {
+      font-size: clamp(1.1rem, 1.9vw, 1.5rem);
+      letter-spacing: 0.14em;
+      color: var(--steel);
+      margin: -1rem 0 2rem;
+    }
+    .hero .lede {
+      max-width: 640px;
+      color: #B7C2D8;
+      font-size: 0.95rem;
+      line-height: 2.1;
+      letter-spacing: 0.06em;
+      margin-bottom: 3.2rem;
+    }
+    .hero-cta { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .hero-foot {
+      position: relative; z-index: 2;
+      margin-top: auto;
+      padding-top: 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    /* entrance */
+    @keyframes rise { from { opacity: 0; transform: translateY(34px); } to { opacity: 1; transform: none; } }
+    .hero-inner > * { opacity: 0; animation: rise 1.3s cubic-bezier(.22,.61,.21,1) forwards; }
+    .hero-inner > *:nth-child(1) { animation-delay: 0.2s; }
+    .hero-inner > *:nth-child(2) { animation-delay: 0.4s; }
+    .hero-inner > *:nth-child(3) { animation-delay: 0.65s; }
+    .hero-inner > *:nth-child(4) { animation-delay: 0.85s; }
+    .hero-foot { opacity: 0; animation: rise 1.3s 1.2s cubic-bezier(.22,.61,.21,1) forwards; }
+
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 1.1s cubic-bezier(.22,.61,.21,1), transform 1.1s cubic-bezier(.22,.61,.21,1); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- marquee ---------- */
+    .clients {
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+      padding: 2.4rem 0;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .marquee-track { display: flex; width: max-content; animation: marquee 42s linear infinite; }
+    .marquee-set { display: flex; align-items: center; gap: 8rem; padding-right: 8rem; }
+    .marquee-set img { height: 34px; width: auto; filter: brightness(0) invert(1); opacity: 0.45; transition: opacity 0.4s; }
+    .marquee-set img:hover { opacity: 0.9; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    section { padding: 9rem 5vw; }
+    .wrap { max-width: 1240px; margin: 0 auto; }
+
+    /* ---------- numbers ---------- */
+    .numbers { background: var(--bg2); border-bottom: 1px solid var(--hairline); }
+    .num-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+    .num-cell {
+      padding: 2.2rem 2.4rem;
+      border-left: 1px solid var(--hairline);
+    }
+    .num-cell:first-child { border-left: none; padding-left: 0; }
+    .num-cell .figure {
+      font-weight: 400;
+      font-size: clamp(2.6rem, 4vw, 4rem);
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    .num-cell .cap {
+      margin-top: 0.6rem;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ---------- services ---------- */
+    .svc { border-top: 1px solid var(--hairline); display: grid; grid-template-columns: 110px 1fr 1.1fr; gap: 2.5rem; padding: 3.4rem 0; align-items: baseline; transition: background 0.5s; }
+    .svc:last-child { border-bottom: 1px solid var(--hairline); }
+    .svc .idx { font-size: 1.1rem; color: var(--muted); letter-spacing: 0.2em; }
+    .svc h3 { font-weight: 500; font-size: 1.7rem; line-height: 1.3; letter-spacing: 0.04em; }
+    .svc p { color: var(--muted); font-size: 0.85rem; line-height: 2.1; letter-spacing: 0.06em; max-width: 520px; }
+    .svc:hover h3 { color: var(--steel); transition: color 0.5s; }
+
+    /* ---------- results ---------- */
+    .results { background: var(--bg2); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+    .res-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .res-cell { border-left: 1px solid var(--hairline); padding: 1rem 2.6rem 1rem; }
+    .res-cell:first-child { border-left: none; padding-left: 0; }
+    .res-cell .figure {
+      font-weight: 400;
+      font-size: clamp(2.4rem, 3.4vw, 3.4rem);
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .res-cell .what { margin-top: 0.8rem; color: var(--ink); font-weight: 500; font-size: 0.8rem; letter-spacing: 0.1em; }
+    .res-cell .where { margin-top: 0.2rem; color: var(--muted); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; }
+
+    /* ---------- statement ---------- */
+    .statement { text-align: center; padding: 12rem 5vw; }
+    .statement blockquote {
+      font-weight: 400;
+      font-size: clamp(1.7rem, 3.6vw, 3.1rem);
+      line-height: 1.4;
+      letter-spacing: 0.03em;
+      max-width: 1050px;
+      margin: 0 auto 2.4rem;
+    }
+    .statement .sub { color: var(--muted); font-size: 0.85rem; line-height: 2.1; letter-spacing: 0.06em; max-width: 560px; margin: 0 auto 3.4rem; }
+
+    /* ---------- contact ---------- */
+    .contact { border-top: 1px solid var(--hairline); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; }
+    .contact h2 { font-weight: 400; font-size: clamp(1.9rem, 3.2vw, 2.9rem); line-height: 1.3; margin-bottom: 2rem; }
+    .contact .meta { color: var(--muted); font-size: 0.85rem; letter-spacing: 0.06em; line-height: 2.3; }
+    .contact .meta strong { color: var(--ink); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; font-size: 11px; display: block; margin-top: 1.6rem; }
+    .field { margin-bottom: 2.4rem; }
+    .field label { display: block; font-size: 10.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .field input, .field textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--hairline-strong);
+      color: var(--ink);
+      font-family: 'Cinzel', Georgia, serif;
+      font-weight: 400;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      padding: 0.6rem 0;
+      outline: none;
+      transition: border-color 0.4s;
+      border-radius: 0;
+    }
+    .field input:focus, .field textarea:focus { border-bottom-color: var(--steel); }
+    .field textarea { resize: vertical; min-height: 90px; }
+
+    footer {
+      border-top: 1px solid var(--hairline);
+      padding: 3.4rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 10.5px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+    footer .wordmark { font-size: 0.95rem; color: var(--ink); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-inner > *, .hero-foot { animation: none; opacity: 1; }
+      .reveal { transition: none; opacity: 1; transform: none; }
+      .marquee-track { animation: none; }
+      .hero::after { animation: none; }
+    }
+
+    /* ---------- mobile ---------- */
+    @media (max-width: 860px) {
+      nav.top { padding: 1.6rem 6vw; }
+      .nav-links a:not(.btn) { display: none; }
+      .nav-links .btn { display: inline-block; padding: 0.7rem 1.5rem; font-size: 10px; }
+      .hero { padding: 8rem 6vw 3rem; }
+      .hero-foot { flex-direction: column; align-items: flex-start; gap: 0.8rem; padding-top: 3rem; }
+      section { padding: 5.5rem 6vw; }
+      .svc { grid-template-columns: 1fr; gap: 0.8rem; padding: 2.4rem 0; }
+      .num-cell, .res-cell { border-left: none; padding: 1.6rem 0; border-top: 1px solid var(--hairline); }
+      .num-cell:first-child, .res-cell:first-child { border-top: none; padding-top: 0; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+      .statement { padding: 7rem 6vw; }
+      .marquee-set { gap: 4rem; padding-right: 4rem; }
+      .marquee-set img { height: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="top">
+    <a href="#" class="brand wordmark">APHANI<small>SOLUTIONS</small></a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#results">Results</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn">Book a Call</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="overline">Aphani Solutions &nbsp;·&nbsp; Where Calls Convert</p>
+      <h1>Elite sales,<br><em>exceptionally</em> executed.</h1>
+      <p class="hero-tag">Where calls convert.</p>
+      <p class="lede">The dedicated call centre and sales team for businesses that grow by phone — boutique fitness, wellness, med spas, and beyond. Every lead called. Every deal closed. Every night, you see the numbers.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn solid">Book a Discovery Call</a>
+        <a href="#numbers" class="btn">Explore the Numbers</a>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <span>Baltimore, MD</span>
+      <span>Est. 2026</span>
+      <span>Scroll</span>
+    </div>
+  </header>
+
+  <div class="clients" aria-label="Brands Aphani Solutions works with">
+    <p class="overline" style="text-align:center; margin:0 0 1.6rem;">Trusted by leading brands</p>
+    <div class="marquee-track">
+      <div class="marquee-set">
+        <img src="logos/f45.svg" alt="F45 Training">
+        <img src="logos/fxb.png" alt="Farrell's eXtreme Bodyshaping">
+        <img src="logos/mayweather.png" alt="Mayweather Boxing + Fitness">
+        <img src="logos/maxchallenge.png" alt="The MAX Challenge">
+      </div>
+      <div class="marquee-set" aria-hidden="true">
+        <img src="logos/f45.svg" alt="">
+        <img src="logos/fxb.png" alt="">
+        <img src="logos/mayweather.png" alt="">
+        <img src="logos/maxchallenge.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  <section class="numbers" id="numbers">
+    <div class="wrap">
+      <div class="sec-label reveal">
+        <span class="num">01</span>
+        <span class="overline">The numbers</span>
+        <span class="rule"></span>
+      </div>
+      <div class="num-grid">
+        <div class="num-cell reveal">
+          <div class="figure"><span data-count="1400" data-suffix="+">0</span></div>
+          <div class="cap">Calls per location, monthly</div>
+        </div>
+        <div class="num-cell reveal">
+          <div class="figure"><span data-count="87.5" data-decimals="1" data-suffix="%">0</span></div>
+          <div class="cap">Trial close rate</div>
+        </div>
+        <div class="num-cell reveal">
+          <div class="figure"><span data-count="5.49" data-decimals="2" data-suffix="×">0</span></div>
+          <div class="cap">ROI in ninety days</div>
+        </div>
+        <div class="num-cell reveal">
+          <div class="figure"><span data-count="17">0</span></div>
+          <div class="cap">Locations under management</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-label reveal">
+        <span class="num">02</span>
+        <span class="overline">What we do</span>
+        <span class="rule"></span>
+      </div>
+      <div class="svc reveal">
+        <span class="idx">I.</span>
+        <h3>Outbound, relentlessly.</h3>
+        <p>1,400+ calls per location per month, scripted around your specific offer — not a generic pitch. Your leads hear from us before they forget you exist.</p>
+      </div>
+      <div class="svc reveal">
+        <span class="idx">II.</span>
+        <h3>Closed on the first call.</h3>
+        <p>Needs assessment, value build, close. The trial is our fallback, not our opener. That discipline is why our close rates lead every network we serve.</p>
+      </div>
+      <div class="svc reveal">
+        <span class="idx">III.</span>
+        <h3>Total transparency.</h3>
+        <p>Weekly reports. MACRO report every Monday. Your own campaign, with suggestions on improvement — owners stay part of our process. You will never wonder what we did with your leads.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="results" id="results">
+    <div class="wrap">
+      <div class="sec-label reveal">
+        <span class="num">03</span>
+        <span class="overline">Proof, not promises</span>
+        <span class="rule"></span>
+      </div>
+      <div class="res-grid">
+        <div class="res-cell reveal">
+          <div class="figure">$17,006</div>
+          <div class="what">Revenue in month one</div>
+          <div class="where">FXB · Minnesota</div>
+        </div>
+        <div class="res-cell reveal">
+          <div class="figure">5.49×</div>
+          <div class="what">Return on investment, 90 days</div>
+          <div class="where">FXB · Iowa</div>
+        </div>
+        <div class="res-cell reveal">
+          <div class="figure">87.5%</div>
+          <div class="what">Trial close rate, best in network</div>
+          <div class="where">FXB · Iowa</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="statement">
+    <blockquote class="reveal">&ldquo;Stop leaving revenue on the table. We handle sales&nbsp;— you run the business.&rdquo;</blockquote>
+    <p class="sub reveal">A partnership, not a vendor. Seventeen locations across four states already trust us with their front line.</p>
+    <a href="#contact" class="btn reveal">Apply for Partnership</a>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="sec-label reveal">
+        <span class="num">04</span>
+        <span class="overline">Contact</span>
+        <span class="rule"></span>
+      </div>
+      <div class="contact-grid">
+        <div class="reveal">
+          <h2>Let&rsquo;s talk about the calls your business is missing.</h2>
+          <div class="meta">
+            <strong>Phone</strong>
+            (945) 412-8283
+          </div>
+        </div>
+        <form class="reveal" onsubmit="return false;">
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="f-msg">About your business</label>
+            <textarea id="f-msg"></textarea>
+          </div>
+          <button type="submit" class="btn solid" style="cursor:pointer;">Send Enquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="brand wordmark">APHANI<small>SOLUTIONS</small></span>
+    <span>Elite Sales · Exceptional Results · Where Calls Convert</span>
+    <span>&copy; 2026 Aphani Solutions LLC</span>
+  </footer>
+
+  <script>
+    var revealEls = document.querySelectorAll('.reveal');
+    var grids = document.querySelectorAll('.num-grid, .res-grid');
+    grids.forEach(function (grid) {
+      Array.prototype.forEach.call(grid.children, function (child, i) {
+        child.dataset.d = i * 140;
+      });
+    });
+
+    function countUp(el) {
+      var target = parseFloat(el.dataset.count);
+      var decimals = parseInt(el.dataset.decimals || '0', 10);
+      var suffix = el.dataset.suffix || '';
+      var dur = 1800, t0 = null;
+      function frame(t) {
+        if (!t0) t0 = t;
+        var p = Math.min((t - t0) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 4);
+        var val = target * eased;
+        el.textContent = val.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.style.transitionDelay = (entry.target.dataset.d || 0) + 'ms';
+        entry.target.classList.add('in');
+        entry.target.querySelectorAll('[data-count]').forEach(countUp);
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.2 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  </script>
+
+</body>
+</html>
