@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Share Your Experience — Aphani Solutions</title>
+  <meta name="description" content="A short form for Aphani partners to share a testimonial for the Aphani website.">
+  <meta name="robots" content="noindex">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg: #030711;
+      --bg2: #050B1A;
+      --ink: #EDEFF4;
+      --muted: #8C99B0;
+      --steel: #8FB3D4;
+      --accent: #2E5F8A;
+      --hairline: rgba(200,214,235,0.14);
+      --hairline-strong: rgba(200,214,235,0.28);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Cinzel', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.9;
+      letter-spacing: 0.04em;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    ::selection { background: var(--accent); color: white; }
+
+    .wordmark { font-family: 'Cinzel', Georgia, serif; letter-spacing: 0.45em; font-weight: 700; text-indent: 0.45em; }
+    .overline { font-size: 11px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--steel); }
+
+    nav.top {
+      display: flex; justify-content: center;
+      padding: 2.6rem 5vw 0;
+    }
+    .brand { font-size: 1.05rem; color: var(--ink); text-decoration: none; text-align: center; }
+    .brand small { display: block; font-size: 8.5px; letter-spacing: 0.52em; color: var(--muted); margin-top: 0.3rem; text-indent: 0.52em; font-weight: 400; }
+
+    .shell {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 6vw 7rem;
+      position: relative;
+    }
+    .shell::before {
+      content: '';
+      position: fixed; inset: 0;
+      background: radial-gradient(ellipse 90% 60% at 70% -10%, rgba(46,95,138,0.16), transparent 60%);
+      pointer-events: none;
+    }
+    .shell > * { position: relative; }
+
+    h1 { font-weight: 400; font-size: clamp(1.9rem, 4.4vw, 2.9rem); line-height: 1.3; margin: 1.6rem 0 1.8rem; }
+    h1 em { font-style: normal; color: var(--steel); }
+    .lede { color: var(--muted); font-size: 0.88rem; line-height: 2.1; letter-spacing: 0.05em; margin-bottom: 4rem; }
+    .lede strong { color: var(--ink); font-weight: 500; }
+
+    .field { margin-bottom: 2.4rem; }
+    .field label { display: block; font-size: 10.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .field label .opt { color: var(--muted); opacity: 0.7; letter-spacing: 0.2em; }
+    .field input, .field textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--hairline-strong);
+      color: var(--ink);
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      padding: 0.6rem 0;
+      outline: none;
+      transition: border-color 0.4s;
+      border-radius: 0;
+    }
+    .field input:focus, .field textarea:focus { border-bottom-color: var(--steel); }
+    .field textarea { resize: vertical; min-height: 140px; line-height: 1.9; }
+    .hint { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; margin-top: 0.5rem; line-height: 1.8; }
+
+    .consent { display: flex; gap: 1rem; align-items: flex-start; margin: 3rem 0; }
+    .consent input { margin-top: 0.55rem; accent-color: var(--accent); }
+    .consent label { color: var(--muted); font-size: 0.78rem; line-height: 1.9; letter-spacing: 0.05em; }
+
+    .btn {
+      display: inline-block;
+      border: 1px solid var(--ink);
+      background: var(--ink); color: var(--bg);
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 11.5px; font-weight: 500;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      padding: 1rem 2.6rem;
+      cursor: pointer;
+      transition: background 0.5s, color 0.5s;
+    }
+    .btn:hover { background: transparent; color: var(--ink); border-color: var(--hairline-strong); }
+
+    .thanks {
+      display: none;
+      border: 1px solid var(--hairline);
+      background: var(--bg2);
+      padding: 3rem 2.8rem;
+      margin-top: 3rem;
+    }
+    .thanks.show { display: block; }
+    .thanks h2 { font-weight: 500; font-size: 1.2rem; letter-spacing: 0.08em; margin-bottom: 1rem; }
+    .thanks p { color: var(--muted); font-size: 0.85rem; line-height: 2; letter-spacing: 0.05em; }
+
+    footer {
+      border-top: 1px solid var(--hairline);
+      padding: 3rem 5vw;
+      text-align: center;
+      color: var(--muted);
+      font-size: 10.5px; letter-spacing: 0.3em; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="top">
+    <a href="luxe-serif.html" class="brand wordmark">APHANI<small>SOLUTIONS</small></a>
+  </nav>
+
+  <div class="shell">
+    <p class="overline">For Aphani Partners</p>
+    <h1>Would you share a few words <em>about working with us?</em></h1>
+    <p class="lede">Your experience helps other studio owners decide whether Aphani is right for them. Two or three honest sentences are perfect — how it&rsquo;s felt handing off the phones, what the reporting is like, or what the results have meant for your studio. <strong>It takes about two minutes.</strong></p>
+
+    <!-- NOTE FOR LAUNCH: point this form at a real endpoint (Formspree / WPForms once on
+         WordPress). Until then, submitting opens a pre-filled email as a fallback. -->
+    <form id="review-form">
+      <div class="field">
+        <label for="r-name">Your name</label>
+        <input id="r-name" type="text" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="r-title">Your title</label>
+        <input id="r-title" type="text" autocomplete="organization-title" placeholder="Owner, General Manager, Operator…" required>
+      </div>
+      <div class="field">
+        <label for="r-studio">Studio / business</label>
+        <input id="r-studio" type="text" autocomplete="organization" required>
+      </div>
+      <div class="field">
+        <label for="r-quote">Your experience with Aphani</label>
+        <textarea id="r-quote" required></textarea>
+        <p class="hint">If you&rsquo;re not sure where to start: What was lead follow-up like before Aphani? What&rsquo;s changed? Would you recommend us to another owner?</p>
+      </div>
+      <div class="field">
+        <label for="r-photo">Photo <span class="opt">· optional</span></label>
+        <input id="r-photo" type="text" placeholder="Happy to send a headshot? Just write 'yes' and we'll follow up.">
+        <p class="hint">A photo makes your words even more credible on the site, but it&rsquo;s entirely optional.</p>
+      </div>
+      <div class="consent">
+        <input id="r-consent" type="checkbox" required>
+        <label for="r-consent">I give Aphani Solutions permission to publish this testimonial, with my name, title, and studio, on the Aphani website and marketing materials.</label>
+      </div>
+      <button type="submit" class="btn">Submit My Testimonial</button>
+    </form>
+
+    <div class="thanks" id="thanks">
+      <h2>Thank you.</h2>
+      <p>Your email app should have opened with your testimonial pre-filled — just press send. If it didn&rsquo;t, you can copy your words and email them to us directly. We&rsquo;re grateful for your partnership.</p>
+    </div>
+  </div>
+
+  <footer>
+    Elite Sales · Exceptional Results · Where Calls Convert &nbsp;·&nbsp; &copy; 2026 Aphani Solutions LLC
+  </footer>
+
+  <script>
+    /* Fallback delivery until a real form endpoint is wired up:
+       composes a pre-filled email to Cameron. */
+    var APHANI_EMAIL = 'cameronlaguerre2398@gmail.com';
+
+    document.getElementById('review-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = function (id) { return document.getElementById(id).value.trim(); };
+      var body =
+        'Name: ' + v('r-name') + '\n' +
+        'Title: ' + v('r-title') + '\n' +
+        'Studio: ' + v('r-studio') + '\n' +
+        'Photo: ' + (v('r-photo') || 'n/a') + '\n' +
+        'Permission to publish: yes\n\n' +
+        'Testimonial:\n' + v('r-quote');
+      window.location.href = 'mailto:' + APHANI_EMAIL +
+        '?subject=' + encodeURIComponent('Aphani Testimonial — ' + v('r-name')) +
+        '&body=' + encodeURIComponent(body);
+      document.getElementById('thanks').classList.add('show');
+    });
+  </script>
+
+</body>
+</html>
