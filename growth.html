@@ -195,7 +195,22 @@
     @media (max-width: 900px) {
       ul.ticks { columns: 1; }
       .pill-grid { grid-template-columns: 1fr 1fr; }
-      .slide { padding: 5vh 6vw 12vh; overflow-y: auto; justify-content: flex-start; }
+      .slide { padding: 4vh 6vw 16vh; overflow-y: auto; justify-content: flex-start; }
+    }
+    @media (max-width: 700px) {
+      .pill-grid, .proof-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+      .pill { padding: 1.5rem 1.4rem; }
+      .chain { gap: 0.6rem; }
+      .chain .node { padding: 0.6rem 1rem; }
+      .chain .link { font-size: 0.85rem; }
+      .kicker { margin-top: 3vh; padding-left: 1.2rem; }
+      ul.ticks li { padding: 0.8rem 0; }
+      .chrome { padding: 1rem 5vw; gap: 0.8rem; }
+      .chrome .brand { font-size: 0.7rem; letter-spacing: 0.3em; }
+      .progress { gap: 3px; }
+      .progress i { width: 8px; }
+      .navbtn { padding: 0.55rem 0.95rem; }
+      .price-row { gap: 1.2rem; }
     }
   </style>
 </head>
@@ -460,6 +475,21 @@
     if (e.target.closest('.chrome')) return;
     show(i + 1);
   });
+
+  /* touch swipe navigation */
+  var tx = null, ty = null;
+  document.addEventListener('touchstart', function (e) {
+    tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    var dy = e.changedTouches[0].clientY - ty;
+    tx = ty = null;
+    if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      show(dx < 0 ? i + 1 : i - 1);
+    }
+  }, { passive: true });
   show(0);
 </script>
 
