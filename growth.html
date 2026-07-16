@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aphani Growth Partnership — Proposal</title>
+  <meta name="robots" content="noindex">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg: #030711;
+      --bg2: #050B1A;
+      --ink: #EDEFF4;
+      --muted: #8C99B0;
+      --steel: #8FB3D4;
+      --accent: #2E5F8A;
+      --hairline: rgba(200,214,235,0.14);
+      --hairline-strong: rgba(200,214,235,0.28);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Cinzel', Georgia, serif;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: var(--accent); color: white; }
+
+    .wordmark { letter-spacing: 0.45em; font-weight: 700; text-indent: 0.45em; }
+    .overline {
+      font-size: clamp(10px, 1.1vw, 13px);
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--steel);
+    }
+
+    .deck { height: 100vh; position: relative; }
+    .deck::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 90% 60% at 70% -10%, rgba(46,95,138,0.16), transparent 60%),
+        radial-gradient(circle, rgba(237,239,244,0.03) 1px, transparent 1px);
+      background-size: auto, 72px 72px;
+      pointer-events: none;
+    }
+
+    .slide {
+      position: absolute; inset: 0;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6vh 7vw;
+      z-index: 2;
+    }
+    .slide.active { display: flex; animation: rise 0.9s cubic-bezier(.22,.61,.21,1); }
+    @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+
+    .slide h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 5.2vw, 4.6rem);
+      line-height: 1.18;
+      margin: 1.6rem 0;
+    }
+    .slide h2 {
+      font-weight: 400;
+      font-size: clamp(1.8rem, 3.6vw, 3.2rem);
+      line-height: 1.25;
+      margin: 1.2rem 0 1.6rem;
+    }
+    .slide h1 em, .slide h2 em, .slide .lede em { font-style: normal; color: var(--steel); }
+    .lede {
+      color: #B7C2D8;
+      font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+      line-height: 2;
+      letter-spacing: 0.06em;
+      max-width: 900px;
+    }
+    .sub { color: var(--muted); font-size: clamp(0.8rem, 1.2vw, 0.95rem); line-height: 2; letter-spacing: 0.06em; max-width: 860px; }
+
+    .rule-label { display: flex; align-items: baseline; gap: 1.4rem; margin-bottom: 2.5vh; }
+    .rule-label .rule { flex: 1; height: 1px; background: var(--hairline); }
+    .rule-label .num { font-size: 0.95rem; color: var(--muted); }
+
+    /* ---------- components ---------- */
+    ul.ticks { list-style: none; margin-top: 2.5vh; columns: 2; column-gap: 4rem; max-width: 980px; }
+    ul.ticks li {
+      break-inside: avoid;
+      color: var(--muted);
+      font-size: clamp(0.82rem, 1.25vw, 1rem);
+      letter-spacing: 0.07em;
+      padding: 1rem 0;
+      border-top: 1px solid var(--hairline);
+    }
+    ul.ticks li::before { content: '—  '; color: var(--steel); }
+
+    .pill-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3.5vh; }
+    .pill {
+      border: 1px solid var(--hairline);
+      background: var(--bg2);
+      padding: 2rem 1.8rem;
+    }
+    .pill .p-num { color: var(--steel); font-size: 1.5rem; }
+    .pill h3 { font-weight: 500; font-size: clamp(0.95rem, 1.3vw, 1.15rem); letter-spacing: 0.06em; line-height: 1.5; margin: 1rem 0 0.8rem; }
+    .pill p, .pill li { color: var(--muted); font-size: clamp(0.7rem, 1vw, 0.82rem); letter-spacing: 0.05em; line-height: 1.85; }
+    .pill ul { list-style: none; }
+    .pill li { padding: 0.35rem 0; border-top: 1px solid var(--hairline); }
+    .pill li:first-child { border-top: none; }
+
+    /* funnel chain */
+    .chain { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; margin-top: 3.5vh; max-width: 1100px; }
+    .chain .node {
+      border: 1px solid var(--hairline-strong);
+      background: var(--bg2);
+      padding: 0.85rem 1.5rem;
+      font-size: clamp(0.72rem, 1.05vw, 0.9rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .chain .node.hot { border-color: var(--steel); color: var(--steel); }
+    .chain .link { color: var(--steel); font-size: 1rem; }
+
+    /* metrics flow */
+    .flow { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; margin-top: 3vh; max-width: 1100px; }
+    .flow .f { color: var(--ink); font-size: clamp(0.8rem, 1.2vw, 1rem); letter-spacing: 0.1em; }
+    .flow .fa { color: var(--steel); }
+
+    .kicker {
+      margin-top: 4.5vh;
+      color: var(--steel);
+      font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+      letter-spacing: 0.1em;
+      line-height: 1.9;
+      border-left: 1px solid var(--steel);
+      padding-left: 1.8rem;
+      max-width: 820px;
+    }
+
+    /* price slide */
+    .price-row { display: flex; align-items: baseline; gap: 2rem; margin-top: 3vh; flex-wrap: wrap; }
+    .price { font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1; }
+    .price small { font-size: clamp(0.9rem, 1.6vw, 1.2rem); color: var(--muted); letter-spacing: 0.14em; }
+
+    /* chrome */
+    .chrome {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.6rem 7vw;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      border-top: 1px solid var(--hairline);
+      background: rgba(3,7,17,0.7);
+      backdrop-filter: blur(6px);
+    }
+    .chrome .brand { color: var(--ink); font-size: 0.8rem; }
+    .progress { display: flex; gap: 0.5rem; }
+    .progress i { width: 26px; height: 1px; background: var(--hairline-strong); transition: background 0.4s; }
+    .progress i.on { background: var(--steel); }
+    .navbtn {
+      cursor: pointer; user-select: none;
+      border: 1px solid var(--hairline-strong);
+      padding: 0.5rem 1.1rem;
+      color: var(--ink);
+      background: transparent;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    }
+    .navbtn:hover { background: var(--ink); color: var(--bg); }
+
+    @media (max-width: 900px) {
+      ul.ticks { columns: 1; }
+      .pill-grid { grid-template-columns: 1fr 1fr; }
+      .slide { padding: 5vh 6vw 12vh; overflow-y: auto; justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- 1 · TITLE -->
+  <section class="slide active">
+    <p class="overline">Aphani Solutions · Prepared for Cameron La Guerre · July 2026</p>
+    <h1>The Aphani<br><em>Growth Partnership.</em></h1>
+    <p class="lede">The website is live. Now we turn it into a system that books strategy calls every month — <em>on purpose, not by accident.</em></p>
+  </section>
+
+  <!-- 2 · MOMENTUM -->
+  <section class="slide">
+    <div class="rule-label"><span class="num">01</span><span class="overline">Where we are today</span><span class="rule"></span></div>
+    <h2>Phase one is <em>already live.</em></h2>
+    <ul class="ticks">
+      <li>Conversion-focused homepage — launched</li>
+      <li>Dedicated results &amp; case studies page — launched</li>
+      <li>Founder story &amp; trust architecture — launched</li>
+      <li>Client review funnel page — ready to send today</li>
+      <li>FAQ engineered to remove objections — launched</li>
+      <li>Standardized "Book a Revenue Strategy Call" journey — launched</li>
+    </ul>
+    <p class="kicker">Every visitor now lands on a site built to convert. The question is no longer &ldquo;does the site work?&rdquo; — it&rsquo;s &ldquo;how many people see it?&rdquo;</p>
+  </section>
+
+  <!-- 3 · THE GOAL -->
+  <section class="slide">
+    <div class="rule-label"><span class="num">02</span><span class="overline">The one goal</span><span class="rule"></span></div>
+    <h2>Everything is measured against<br><em>one number:</em></h2>
+    <h1 style="margin-top:0.5rem;">Booked strategy calls.</h1>
+    <p class="sub">Traffic, followers, rankings, reviews — they are levers, not goals. Every month, every activity in this partnership answers one question: did it put qualified studio owners on your calendar?</p>
+  </section>
+
+  <!-- 4 · THE SYSTEM -->
+  <section class="slide">
+    <div class="rule-label"><span class="num">03</span><span class="overline">The system</span><span class="rule"></span></div>
+    <h2>Not tactics. <em>A connected customer journey.</em></h2>
+    <div class="chain">
+      <span class="node">Meta / Google Ad</span><span class="link">&rarr;</span>
+      <span class="node">Landing Page</span><span class="link">&rarr;</span>
+      <span class="node hot">Book Strategy Call</span><span class="link">&rarr;</span>
+      <span class="node">Calendar</span><span class="link">&rarr;</span>
+      <span class="node">CRM</span><span class="link">&rarr;</span>
+      <span class="node">Email Nurture</span><span class="link">&rarr;</span>
+      <span class="node">Sales Call</span><span class="link">&rarr;</span>
+      <span class="node hot">Client</span><span class="link">&rarr;</span>
+      <span class="node">Google Review</span><span class="link">&rarr;</span>
+      <span class="node">Referral</span><span class="link">&rarr;</span>
+      <span class="node">Retargeting</span>
+    </div>
+    <p class="kicker">Every stage feeds the next. A visitor who doesn&rsquo;t book gets retargeted. A client who closes generates the review that convinces the next one. Nothing operates alone — exactly like your sales process.</p>
+  </section>
+
+  <!-- 5 · WEBSITE & CRO -->
+  <section class="slide">
+    <div class="rule-label"><span class="num">04</span><span class="overline">Pillar I · Website &amp; Conversion</span><span class="rule"></span></div>
+    <h2>Continuously improve conversion<br>based on <em>real visitor behavior.</em></h2>
+    <ul class="ticks">
+      <li>Ongoing website refinement, driven by data</li>
+      <li>Dedicated landing pages for every campaign</li>
+      <li>A/B testing of headlines, offers, and CTAs</li>
+      <li>New case studies as results come in</li>
+      <li>Speed &amp; performance optimization</li>
+      <li>Conversion tracking on every button</li>
+    </ul>
+  </section>
+
+  <!-- 6 · SEO -->
+  <section class="slide">
+    <div class="rule-label"><span class="num">05</span><span class="overline">Pillar II · Search</span><span class="rule"></span></div>
+    <h2>Qualified organic traffic from studio owners <em>already searching for help.</em></h2>
+    <ul class="ticks">
+      <li>Competitor &amp; keyword research</li>
+      <li>Local SEO &amp; Google Business Profile</li>
+      <li>Technical SEO &amp; site health</li>
+      <li>Service &amp; results pages built to rank</li>
+      <li>Content strategy for fitness-owner searches</li>
+      <li>Search Console &amp; analytics monitoring</li>
+    </ul>
+  </section>
+
+  <!-- 7 · PAID -->
+  <section class="slide">
+    <div class="rule-label"><span class="num">06</span><span class="overline">Pillar III · Paid Advertising</span><span class="rule"></span></div>
+    <h2>A predictable pipeline,<br><em>not a hope-based one.</em></h2>
+    <ul class="ticks">
+      <li>Meta campaigns to boutique fitness owners</li>
+      <li>Google Ads on high-intent searches</li>
+      <li>Retargeting for every non-booking visitor</li>
+      <li>Pixel setup &amp; full conversion tracking</li>
+      <li>Campaign-specific landing pages</li>
+      <li>Monthly optimization &amp; spend reporting</li>
+    </ul>
+  </section>
+
+  <!-- 8 · BRAND AUTHORITY -->
+  <section class="slide">
+    <div class="rule-label"><span class="num">07</span><span class="overline">Pillar IV · Brand Authority</span><span class="rule"></span></div>
+    <h2>Prospects should trust Aphani<br><em>before they ever book a call.</em></h2>
+    <ul class="ticks">
+      <li>Content calendar &amp; brand consistency</li>
+      <li>Reels strategy built on your results</li>
+      <li>Instagram optimization</li>
+      <li>LinkedIn positioning with operators</li>
+      <li>Organic engagement in the fitness space</li>
+      <li>AI-assisted content production</li>
+    </ul>
+    <p class="kicker">Follower growth becomes the byproduct — authority is the product.</p>
+  </section>
+
+  <!-- 9 · REPUTATION -->
+  <section class="slide">
+    <div class="rule-label"><span class="num">08</span><span class="overline">Pillar V · Reputation</span><span class="rule"></span></div>
+    <h2>Turn every happy client into<br><em>public, rankable proof.</em></h2>
+    <ul class="ticks">
+      <li>QR-code review funnel</li>
+      <li>Automated review requests — email &amp; SMS</li>
+      <li>Review landing page (already built)</li>
+      <li>Google review growth &amp; local rankings</li>
+      <li>Reputation monitoring &amp; response</li>
+      <li>Testimonials piped straight to the website</li>
+    </ul>
+  </section>
+
+  <!-- 10 · ANALYTICS -->
+  <section class="slide">
+    <div class="rule-label"><span class="num">09</span><span class="overline">Pillar VI · Analytics &amp; Reporting</span><span class="rule"></span></div>
+    <h2>You&rsquo;ll see exactly what your money does. <em>Every month.</em></h2>
+    <div class="flow">
+      <span class="f">Visitors</span><span class="fa">&rarr;</span>
+      <span class="f">Conversion&nbsp;Rate</span><span class="fa">&rarr;</span>
+      <span class="f">Booked&nbsp;Calls</span><span class="fa">&rarr;</span>
+      <span class="f">Ad&nbsp;Spend</span><span class="fa">&rarr;</span>
+      <span class="f">Cost&nbsp;per&nbsp;Lead</span><span class="fa">&rarr;</span>
+      <span class="f">Rankings</span><span class="fa">&rarr;</span>
+      <span class="f">Recommendations</span>
+    </div>
+    <p class="kicker">Bi-weekly updates. Monthly strategy call. The same transparency Aphani gives its clients — you get from me. You will never wonder what happened with your marketing.</p>
+  </section>
+
+  <!-- 11 · ROADMAP -->
+  <section class="slide">
+    <div class="rule-label"><span class="num">10</span><span class="overline">The 90-day roadmap</span><span class="rule"></span></div>
+    <h2>Foundation. Traffic. <em>Scale.</em></h2>
+    <div class="pill-grid">
+      <div class="pill">
+        <div class="p-num">01</div>
+        <h3>Weeks 1–2<br>Foundation</h3>
+        <ul>
+          <li>Website launch ✓</li>
+          <li>WordPress migration</li>
+          <li>Analytics + Search Console</li>
+          <li>Meta pixel &amp; tracking</li>
+        </ul>
+      </div>
+      <div class="pill">
+        <div class="p-num">02</div>
+        <h3>Weeks 3–4<br>Presence</h3>
+        <ul>
+          <li>SEO foundation</li>
+          <li>Google Business Profile</li>
+          <li>Instagram &amp; Facebook setup</li>
+          <li>Review funnel live</li>
+        </ul>
+      </div>
+      <div class="pill">
+        <div class="p-num">03</div>
+        <h3>Month 2<br>Traffic</h3>
+        <ul>
+          <li>Google &amp; Meta ads live</li>
+          <li>Campaign landing pages</li>
+          <li>Remarketing</li>
+          <li>Email automation</li>
+        </ul>
+      </div>
+      <div class="pill">
+        <div class="p-num">04</div>
+        <h3>Month 3<br>Scale</h3>
+        <ul>
+          <li>Scale what converts</li>
+          <li>SEO content engine</li>
+          <li>New case studies</li>
+          <li>Referral system + testing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 · THE OFFER -->
+  <section class="slide">
+    <div class="rule-label"><span class="num">11</span><span class="overline">The partnership</span><span class="rule"></span></div>
+    <h2>One partner. One system.<br><em>One number that grows.</em></h2>
+    <div class="price-row">
+      <div class="price">$600<small>&nbsp;/ month</small></div>
+      <p class="sub" style="max-width:520px;">Website &amp; CRO · Funnels · SEO · Paid ads management · Brand authority · Review acquisition · Bi-weekly reporting &amp; monthly strategy.</p>
+    </div>
+    <p class="kicker">One new client covers this — everything after that is growth. Say yes today and Phase 1 continues this week: WordPress migration, analytics, and tracking go live.</p>
+  </section>
+
+</div>
+
+<div class="chrome">
+  <span class="brand wordmark">APHANI</span>
+  <div class="progress" id="progress"></div>
+  <div style="display:flex; gap:0.6rem; align-items:center;">
+    <button class="navbtn" id="prev">&larr;</button>
+    <button class="navbtn" id="next">&rarr;</button>
+  </div>
+</div>
+
+<script>
+  var slides = document.querySelectorAll('.slide');
+  var progress = document.getElementById('progress');
+  slides.forEach(function () { progress.appendChild(document.createElement('i')); });
+  var bars = progress.children;
+  var i = 0;
+
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    for (var k = 0; k < slides.length; k++) {
+      slides[k].classList.toggle('active', k === i);
+      bars[k].classList.toggle('on', k <= i);
+    }
+  }
+  document.getElementById('next').onclick = function () { show(i + 1); };
+  document.getElementById('prev').onclick = function () { show(i - 1); };
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') show(i + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') show(i - 1);
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(slides.length - 1);
+  });
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.chrome')) return;
+    show(i + 1);
+  });
+  show(0);
+</script>
+
+</body>
+</html>
