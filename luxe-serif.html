@@ -1083,7 +1083,9 @@
         }
       }
       var ff = document.querySelector('form[data-form_id="2071238"]');
-      if (ff && window.jQuery) {
+      var canProxy = false;
+      if (ff) { if (window.jQuery) { canProxy = true; } }
+      if (canProxy) {
         ['name', 'business', 'email', 'phone', 'message'].forEach(function (k) {
           var el = ff.querySelector('[name="' + k + '"]');
           if (el) el.value = vals[k];
@@ -1096,11 +1098,21 @@
           .on('fluentform_submission_success.aphani', function () { if (!settled) { settled = true; done(true); } })
           .on('fluentform_submission_failed.aphani', function () { if (!settled) { settled = true; done(false); } });
         setTimeout(function () { if (!settled) { settled = true; done(false); } }, 20000);
-        jQuery(ff).trigger('submit');
+        jQuery.post(window.fluentFormVars.ajaxUrl + '?t=' + Date.now(), {
+          action: 'fluentform_generate_protection_token',
+          form_id: 2071238,
+          nonce: window.fluentFormVars.token_nonce
+        }).always(function (res) {
+          if (res) { if (res.success) {
+            var ti = ff.querySelector('[name^="__fluent_protection_token"]');
+            if (ti) ti.value = res.data.token;
+          } }
+          jQuery(ff).trigger('submit');
+        });
       } else {
         location.href = 'mailto:cameronlaguerre@yahoo.com?subject=' +
           encodeURIComponent('Strategy Call Request — ' + vals.name + ' (' + vals.business + ')') +
-          '&body=' + encodeURIComponent('Name: ' + vals.name + '\nBusiness: ' + vals.business +
+          '\x26body=' + encodeURIComponent('Name: ' + vals.name + '\nBusiness: ' + vals.business +
             '\nEmail: ' + vals.email + '\nPhone: ' + vals.phone + '\n\n' + vals.message);
       }
     });
