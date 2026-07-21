@@ -100,6 +100,16 @@
     }
     .btn:hover { background: transparent; color: var(--ink); border-color: var(--hairline-strong); }
 
+    .google-review-cta {
+      border: 1px solid var(--hairline-strong);
+      padding: 2.4rem;
+      margin-bottom: 2.4rem;
+      text-align: center;
+    }
+    .google-review-cta p:not(.overline) { color: var(--muted); font-size: 0.85rem; line-height: 1.9; letter-spacing: 0.04em; margin: 0.8rem 0 1.6rem; }
+    .google-review-cta .overline { display: block; margin-bottom: 0.4rem; }
+    .or-divider { text-align: center; color: var(--muted); font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; margin: 0 0 3rem; }
+
     .thanks {
       display: none;
       border: 1px solid var(--hairline);
@@ -130,6 +140,14 @@
     <p class="overline">For Aphani Partners</p>
     <h1>Would you share a few words <em>about working with us?</em></h1>
     <p class="lede">Your experience helps other studio owners decide whether Aphani is right for them. Two or three honest sentences are perfect — how it&rsquo;s felt handing off the phones, what the reporting is like, or what the results have meant for your studio. <strong>It takes about two minutes.</strong></p>
+
+    <div class="google-review-cta">
+      <p class="overline">Prefer somewhere public?</p>
+      <p>Leave us a review directly on Google — it&rsquo;s the single biggest help you can give us, and it takes less than a minute.</p>
+      <a href="https://g.page/r/CUs-yt53pQ0YEAI/review" target="_blank" rel="noopener" class="btn">Leave a Google Review</a>
+    </div>
+
+    <p class="or-divider">Or share a few words with us directly:</p>
 
     <!-- NOTE FOR LAUNCH: point this form at a real endpoint (Formspree / WPForms once on
          WordPress). Until then, submitting opens a pre-filled email as a fallback. -->
