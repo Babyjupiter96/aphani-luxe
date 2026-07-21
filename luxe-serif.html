@@ -560,7 +560,7 @@
       <p class="lede">Aphani is the dedicated sales team behind growing service businesses. We call, follow up with, and convert your leads into customers — <strong>new inquiries, aging leads, and past clients</strong> — so your team can stay focused on the work while your pipeline gets worked full-time.</p>
       <p class="creed">Every lead worked. Every opportunity pursued. Every result reported.</p>
       <div class="hero-cta">
-        <a href="#contact" class="btn solid">Book a Revenue Strategy Call</a>
+        <a href="https://calendly.com/aphanisolutions/30min" onclick="return openCalendly(event)" class="btn solid">Book a Revenue Strategy Call</a>
         <a href="#results" class="btn">See the Results</a>
       </div>
     </div>
@@ -958,7 +958,7 @@
   <section class="statement">
     <blockquote class="reveal">&ldquo;Stop leaving revenue on the table. We handle sales&nbsp;— you run the business.&rdquo;</blockquote>
     <p class="sub reveal">A partnership, not a vendor. Seventeen locations across four states already trust us with their front line.</p>
-    <a href="#contact" class="btn reveal">Book a Revenue Strategy Call</a>
+    <a href="https://calendly.com/aphanisolutions/30min" onclick="return openCalendly(event)" class="btn reveal">Book a Revenue Strategy Call</a>
   </section>
 
   <!-- ============ 11 · CONTACT ============ -->
@@ -978,6 +978,8 @@
             <strong>Coverage</strong>
             US-Based · Serving service businesses nationwide
           </div>
+          <a href="https://calendly.com/aphanisolutions/30min" onclick="return openCalendly(event)" class="btn solid" style="margin-top:2rem; display:inline-block;">Pick a Time on the Calendar</a>
+          <p class="form-note" style="margin-top:0.8rem;">Prefer to just talk it through first? Use the form instead.</p>
         </div>
         <form class="reveal" id="strategy-form">
           <div class="field">
@@ -1122,6 +1124,20 @@
             '\nEmail: ' + vals.email + '\nPhone: ' + vals.phone + '\n\n' + vals.message);
       }
     });
+  </script>
+
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script>
+    function openCalendly(e) {
+      if (e) e.preventDefault();
+      if (window.Calendly) {
+        Calendly.initPopupWidget({ url: 'https://calendly.com/aphanisolutions/30min' });
+      } else {
+        window.open('https://calendly.com/aphanisolutions/30min', '_blank');
+      }
+      return false;
+    }
   </script>
 
 </body>
